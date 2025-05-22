@@ -5,13 +5,12 @@ class Aluno{
     private String nome;
     private String matriculaAluno;
     private Endereco enderecoAluno;
-    private String senha;
+    //private String senha;
     private Historico[] historicoDisciplinas;
 
     public Aluno(String nome, String senha){
         setMatriculaAluno();
         setNome(nome);
-        setSenha(senha);
     }
 
     public Aluno(){
@@ -43,13 +42,13 @@ class Aluno{
         this.enderecoAluno = enderecoAluno;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+//    public String getSenha() {
+//        return senha;
+//    }
+//
+//    public void setSenha(String senha) {
+//        this.senha = senha;
+//    }
 
     public Historico[] getHistoricoDisciplinas() {
         return historicoDisciplinas;
@@ -65,17 +64,15 @@ class Aluno{
         System.out.printf("%nEndereço: " + getEnderecoAluno());
     }
 
-    public Aluno criarAluno(){
-        Scanner sc = new Scanner(System.in);
-        System.out.printf("%nDigite o nome do aluno: ");
-        setNome(sc.nextLine());
-        System.out.printf("%nDigite a senha do aluno: ");
-        setSenha(sc.nextLine());
-        sc.close();
-        return new Aluno(getNome(), getSenha());
-    }
+//    public Aluno criarAluno(){
+//        Scanner sc = new Scanner(System.in);
+//        System.out.printf("%nDigite o nome do aluno: ");
+//        setNome(sc.nextLine());
+//        sc.close();
+//        return this;
+//    }
 
-    public Aluno editarAluno(Aluno aluno){
-        aluno.exibirAluno();
-    }
+//    public Aluno editarAluno(Aluno aluno){
+//        aluno.exibirAluno();
+//    }
 }

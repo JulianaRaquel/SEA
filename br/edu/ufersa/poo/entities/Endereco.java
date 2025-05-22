@@ -70,50 +70,77 @@ public class Endereco{
     public void exibirEndereco(){
         System.out.printf("%nEndereço");
         System.out.printf("%nCep: " + getCep());
-        System.out.printf("%nRua: " + getRua() + "%tN " + getNumCasa() + "%tBairro: " + getBairro());
-        System.out.printf("%nCidade: " + getCidade() + "%tEstado: " + getEstado());
+        System.out.printf("%nRua: " + getRua() + " Nº " + getNumCasa() + "\tBairro: " + getBairro());
+        System.out.printf("%nCidade: " + getCidade() + "\tEstado: " + getEstado());
     }
 
-    public Endereco alterarEndereco(Endereco endereco){
+    public Endereco alterarEndereco(){
+        System.out.printf("%nEndereço atual: %n");
+        exibirEndereco();
 
-        System.out.printf("%nEndereço atual: ");
-        endereco.exibirEndereco();
+        Scanner sc = new Scanner(System.in);
+        int opcao;
 
-        System.out.printf("%n%nQual informação deseja alterar? (Digite 0 para sair)");
-        System.out.println("1) cep");
-        System.out.println("2) rua");
-        System.out.println("3) bairro");
-        System.out.println("4) cidade");
-        System.out.println("5) estado");
-        System.out.println("6) numCasa");
-        System.out.println("Opção: ");
-        Scanner sc = new Scanner(System.in); int opcao = sc.nextInt();
+        do {
 
-        switch(opcao){
-            case 1:
-                setCep(sc.nextLine());
+            System.out.printf("%n%nQual informação deseja alterar? (Digite 0 para sair)%n");
+            System.out.println("1) cep");
+            System.out.println("2) rua");
+            System.out.println("3) bairro");
+            System.out.println("4) cidade");
+            System.out.println("5) estado");
+            System.out.println("6) numCasa");
+            System.out.println("Opção: ");
+
+            opcao = sc.nextInt();
+            sc.nextLine();
+
+            switch(opcao) {
+                case 0:
+                    System.out.println("");
+                break;
+                case 1:
+                    System.out.print("Informe o cep: ");
+                    String novocep = sc.nextLine();
+                    setCep(novocep);
                 break;
                 case 2:
-                    setRua(sc.nextLine());
+                    System.out.print("Informe a rua: ");
+                    String novarua = sc.nextLine();
+                    setRua(novarua);
+                break;
+                case 3:
+                    System.out.print("Informe o bairro: ");
+                    String novobairro = sc.nextLine();
+                    setBairro(novobairro);
+                break;
+                case 4:
+                    System.out.print("Informe a cidade: ");
+                    String novacidade = sc.nextLine();
+                    setCidade(novacidade);
+                break;
+                case 5:
+                    System.out.print("Informe o estado: ");
+                    String novoestado = sc.nextLine();
+                    setEstado(novoestado);
+                break;
+                case 6:
+                    System.out.print("Informe o número da casa: ");
+                    int novonum = sc.nextInt();
+                    setNumCasa(novonum);
+                break;
+                default:
+                    System.out.println("Opção inválida!");
                     break;
-                    case 3:
-                        setBairro(sc.nextLine());
-                        break;
-                        case 4:
-                            setCidade(sc.nextLine());
-                            break;
-                            case 5:
-                                setEstado(sc.nextLine());
-                                break;
-                                case 6:
-                                    setNumCasa(sc.nextInt());
-                                    break;
-                                    default:
-                                        System.out.println("Opção inválida!");
-                                        break;
+                }
 
-        }
+            } while (opcao != 0);
 
-        return endereco;
+        sc.close();
+
+        System.out.println("Alterações salvas!");
+
+        return this;
     }
+
 }

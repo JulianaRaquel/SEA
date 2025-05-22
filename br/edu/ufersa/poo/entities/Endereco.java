@@ -136,8 +136,6 @@ public class Endereco{
 
             } while (opcao != 0);
 
-        sc.close();
-
         System.out.println("Alterações salvas!");
 
         return this;

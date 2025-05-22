@@ -1,19 +1,19 @@
 import java.util.Scanner;
 
-class Aluno{
+public class Aluno {
     private static int matricula = 20250000;
     private String nome;
     private String matriculaAluno;
     private Endereco enderecoAluno;
-    //private String senha;
     private Historico[] historicoDisciplinas;
 
-    public Aluno(String nome, String senha){
+    public Aluno(String nome, Endereco endereco) {
         setMatriculaAluno();
         setNome(nome);
+        setEnderecoAluno(endereco);
     }
 
-    public Aluno(){
+    public Aluno() {
         setMatriculaAluno();
     }
 
@@ -42,14 +42,6 @@ class Aluno{
         this.enderecoAluno = enderecoAluno;
     }
 
-//    public String getSenha() {
-//        return senha;
-//    }
-//
-//    public void setSenha(String senha) {
-//        this.senha = senha;
-//    }
-
     public Historico[] getHistoricoDisciplinas() {
         return historicoDisciplinas;
     }
@@ -58,21 +50,61 @@ class Aluno{
         this.historicoDisciplinas = historicoDisciplinas;
     }
 
-    public void exibirAluno(){
+    public void exibirAluno() {
         System.out.printf("%nMatricula: " + getMatriculaAluno());
         System.out.printf("%nNome: " + getNome());
-        System.out.printf("%nEndereço: " + getEnderecoAluno());
+        this.enderecoAluno.exibirEndereco();
     }
 
-//    public Aluno criarAluno(){
-//        Scanner sc = new Scanner(System.in);
-//        System.out.printf("%nDigite o nome do aluno: ");
-//        setNome(sc.nextLine());
-//        sc.close();
-//        return this;
-//    }
+    public Aluno alterarAluno() {
+        System.out.printf("%nInformações atuais: %n");
+        exibirAluno();
 
-//    public Aluno editarAluno(Aluno aluno){
-//        aluno.exibirAluno();
-//    }
+        Scanner sc = new Scanner(System.in);
+        int info;
+
+        do {
+
+            System.out.printf("%n%nQual informação deseja alterar? (Digite 0 para sair)%n");
+            System.out.println("1) nome");
+            System.out.println("2) endereco");
+            System.out.println("Opção: ");
+
+            info = sc.nextInt();
+            sc.nextLine();
+
+            switch (info) {
+                case 0:
+                    System.out.println("");
+                    break;
+                case 1:
+                    System.out.print("Informe o novo nome: ");
+                    String novonome = sc.nextLine();
+                    setNome(novonome);
+                    break;
+                case 2:
+                    enderecoAluno.alterarEndereco();
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+                    break;
+            }
+        }
+        while (info != 0);
+
+        System.out.println("Alterações salvas!");
+
+        return this;
+    }
+
+
+    public Aluno delAluno() {
+        setNome(null);
+        setEnderecoAluno(null);
+        System.out.printf("%nAluno deletado com sucesso!%n");
+        return this;
+    }
 }
+
+
+

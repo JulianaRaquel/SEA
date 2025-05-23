@@ -53,7 +53,7 @@ public class Aluno {
     public void exibirAluno() {
         System.out.printf("%nMatricula: " + getMatriculaAluno());
         System.out.printf("%nNome: " + getNome());
-        this.enderecoAluno.exibirEndereco();
+        enderecoAluno.exibirEndereco();
     }
 
     public Aluno alterarAluno() {
@@ -97,13 +97,26 @@ public class Aluno {
         return this;
     }
 
-
     public Aluno delAluno() {
         setNome(null);
         setEnderecoAluno(null);
         System.out.printf("%nAluno deletado com sucesso!%n");
         return this;
     }
+
+    public Aluno criarAluno() {
+        Scanner sc = new Scanner(System.in);
+        System.out.printf("%nCriando o cadastro do aluno!%n");
+        System.out.println("Digite o nome do aluno: ");
+        setNome(sc.nextLine());
+        System.out.println("Digite as informações do endereco do aluno: ");
+        Endereco endereco = new Endereco();
+        endereco.criarEndereco();
+        setEnderecoAluno(endereco);
+
+        return this;
+    }
+
 }
 
 

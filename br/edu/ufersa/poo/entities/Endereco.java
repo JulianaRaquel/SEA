@@ -71,7 +71,7 @@ public class Endereco{
         System.out.printf("%nEndereço");
         System.out.printf("%nCep: " + getCep());
         System.out.printf("%nRua: " + getRua() + " Nº " + getNumCasa() + "\tBairro: " + getBairro());
-        System.out.printf("%nCidade: " + getCidade() + "\tEstado: " + getEstado());
+        System.out.printf("%nCidade: " + getCidade() + "\tEstado: " + getEstado() + "%n");
     }
 
     public Endereco alterarEndereco(){
@@ -137,6 +137,23 @@ public class Endereco{
             } while (opcao != 0);
 
         System.out.println("Alterações salvas!");
+
+        return this;
+    }
+
+    public Endereco criarEndereco(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Digite o cep: ");
+        setCep(sc.nextLine());
+        System.out.println("Digite a rua: ");
+        setRua(sc.nextLine());
+        System.out.println("Digite o bairro: ");
+        setBairro(sc.nextLine());
+        System.out.println("Digite a cidade: ");
+        setCidade(sc.nextLine());
+        System.out.println("Digite o estado: ");
+        setEstado(sc.nextLine());
+        System.out.printf("%nEndereço criado!%n");
 
         return this;
     }

@@ -1,43 +1,74 @@
-public class Nota {
-    private double nota1;
-    private double nota2;
-    private double nota3;
+
+import java.util.Scanner;
+
+public class Notas {
+    private double[] notas;
     private double media;
-    
-    public Nota(double n1, double n2, double n3){
-    	this.nota1 = n1;
-	this.nota2 = n2;
-	this.nota3 = n3;
-    }
-	
-    public double calcularMedia(){
-    	double media = (nota1 + nota2 + nota3) / 3.0;
-	return media;
+    private Boolean isP4;
+
+    public double[] getNotas() {
+        return notas;
     }
 
-    public double getNota1(){
-    	return nota1;
+    public void setNotas(double[] notas) {
+        this.notas = notas;
     }
 
-    public void setNota1(double n1){
-    	this.nota1 = n1;
+    public double getMedia() {
+        return media;
     }
 
-    public double getNota2(){
-    	return nota2;
+    public void setMedia(double[] notas, boolean isP4) {
+        this.media = (notas[0] + notas[1] + notas[2]) / 3;
+
+        if (isP4 == true) {
+            this.media = ((6*this.media) + (4*notas[3]))/10;
+        }
     }
 
-    public void setNota2(double n2){
-    	this.nota2 = n2;
+    public Boolean getP4() {
+        return isP4;
     }
 
-    public double getNota3(){
-    	return nota3;
+    public void setP4(Boolean p4) {
+        this.isP4 = p4;
     }
 
-    public void setNota3(double n3){
-    	this.nota3 = n3;
+    public Notas(){
+        setP4(false);
     }
 
+    public double[] lancarNotas(){
+        Scanner sc = new Scanner(System.in);
+        notas = new double[4];
+        System.out.println("Digite as notas do aluno:");
+        for (int i = 0; i < 3; i++) {
+            System.out.printf("Nota %d: ", i + 1);
+            notas[i] = sc.nextDouble();
+        }
+        setMedia(notas, isP4);
+
+        if (this.media < 7){
+            setP4(true);
+        }
+
+        if (isP4 == true) {
+            System.out.printf("Nota %d: ", 4);
+            notas[3] = sc.nextDouble();
+        }
+        setMedia(notas, isP4);
+
+        System.out.println("Notas lançadas!");
+
+        return notas;
+    }
+
+    public void verNotas(){
+        System.out.printf("%nNotas do aluno:%n");
+        System.out.printf("UND1\tUND2\tUND3\tP4\tMEDIA%n");
+        System.out.printf("%.1f\t%.1f\t%.1f\t%.1f\t%.1f%n", this.notas[0], this.notas[1], this.notas[2], this.notas[3], this.media);
+
+
+    }
 
 }

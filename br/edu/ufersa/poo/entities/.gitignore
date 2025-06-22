@@ -1,0 +1,11 @@
+# Ignorar arquivos compilados
+*.class
+
+# Ignorar pastas geradas pelo Eclipse
+/bin/
+/.settings/
+/.project
+.classpath
+
+# Ignorar backups do sistema
+*~

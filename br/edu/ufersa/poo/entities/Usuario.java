@@ -3,15 +3,17 @@ class Usuario {
   private String senha;
   private String nome;
   private String endereco;
+  private String cpf;
   private String email;
   
   public Usuario() {}
   
-  public Usuario(String login, String senha, String nome, String endereco, String email) {
+  public Usuario(String login, String senha, String nome, String endereco, String cpf, String email) {
 	  this.login = login;
 	  this.senha = senha;
 	  this.nome = nome;
 	  this.endereco = endereco;
+	  this.cpf = cpf;
 	  this.email = email;
   }
   
@@ -47,13 +49,21 @@ class Usuario {
         this.endereco = endereco;
   }
   
+  public String getCpf() {
+      return cpf;
+  }
+
+  public void setCpf(String cpf) {
+      this.cpf = cpf;
+  }
+  
   public String getEmail() {
       return email;
-}
+  }
 
-public void setEmail(String email) {
+  public void setEmail(String email) {
       this.email = email;
-}
+  }
 
   public boolean autenticarLogin(String login, String senha) {
         return this.login.equals(login) && this.senha.equals(senha);

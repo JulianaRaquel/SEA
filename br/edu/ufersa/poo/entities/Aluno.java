@@ -1,120 +1,79 @@
 import java.util.Scanner;
 
-public class Aluno {
-    private static int matricula = 20250000;
-    private String nome;
-    private String matriculaAluno;
-    private Endereco enderecoAluno;
-    private Historico[] historicoDisciplinas;
-
-    public Aluno(String nome, Endereco endereco) {
-        setMatriculaAluno();
-        setNome(nome);
-        setEnderecoAluno(endereco);
-    }
-
+public class Aluno extends Usuario{
+    private int matricula;
+    private List<String> historicoEscolar;
+    
+    private Map<String, List<Double>> notasPorTurma;
+    private Map<String, Integer> frequenciaPorTurma;
+    
+    // construtor vazio
     public Aluno() {
-        setMatriculaAluno();
+        super();
+    }
+    
+    public Aluno(String login, String senha, String nome, String endereco, String cpf, String email, String matricula) {
+    	super(login, senha, nome, endereco, cpf, email);
+    	this.matricula = matricula;
+    	this.historicoEscolar = new ArrayList<>();
+    	this.notasPorTurma = new HashMap<>();
+        this.frequenciaPorTurma = new HashMap<>();
     }
 
-    public String getMatriculaAluno() {
-        return matriculaAluno;
+    public String getMatricula() {
+        return matricula;
     }
 
-    public void setMatriculaAluno() {
-        ++matricula;
-        this.matriculaAluno = String.valueOf(matricula);
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 
-    public String getNome() {
-        return nome;
+    public List<String> getHistoricoEscolar() {
+        return historicoEscolar;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setHistoricoEscolar(List<String> historicoEscolar) {
+        this.historicoEscolar = historicoEscolar;
+    }
+    
+    public void verTurmas() {
+    	// inserir implementação
+    }
+    
+    public void verNotas() {
+    	// inserir implementação
     }
 
-    public Endereco getEnderecoAluno() {
-        return enderecoAluno;
+    public void verFrequencia() {
+    	// inserir implementação
     }
-
-    public void setEnderecoAluno(Endereco enderecoAluno) {
-        this.enderecoAluno = enderecoAluno;
+    
+    public void mostrarDisciplinasConcluida() {
+    	// inserir implementação
     }
-
-    public Historico[] getHistoricoDisciplinas() {
-        return historicoDisciplinas;
-    }
-
-    public void setHistoricoDisciplinas(Historico[] historicoDisciplinas) {
-        this.historicoDisciplinas = historicoDisciplinas;
-    }
-
+    
     public void exibirAluno() {
         System.out.printf("%nMatricula: " + getMatriculaAluno());
         System.out.printf("%nNome: " + getNome());
         enderecoAluno.exibirEndereco();
     }
-
-    public Aluno alterarAluno() {
-        System.out.printf("%nInformações atuais: %n");
-        exibirAluno();
-
-        Scanner sc = new Scanner(System.in);
-        int info;
-
-        do {
-
-            System.out.printf("%n%nQual informação deseja alterar? (Digite 0 para sair)%n");
-            System.out.println("1) nome");
-            System.out.println("2) endereco");
-            System.out.println("Opção: ");
-
-            info = sc.nextInt();
-            sc.nextLine();
-
-            switch (info) {
-                case 0:
-                    System.out.println("");
-                    break;
-                case 1:
-                    System.out.print("Informe o novo nome: ");
-                    String novonome = sc.nextLine();
-                    setNome(novonome);
-                    break;
-                case 2:
-                    enderecoAluno.alterarEndereco();
-                    break;
-                default:
-                    System.out.println("Opção inválida!");
-                    break;
-            }
-        }
-        while (info != 0);
-
-        System.out.println("Alterações salvas!");
-
-        return this;
+    
+    public void adicionarNota(String nomeTurma, double nota) {
+        notasPorTurma.putIfAbsent(nomeTurma, new ArrayList<>());
+        notasPorTurma.get(nomeTurma).add(nota);
     }
 
-    public Aluno delAluno() {
-        setNome(null);
-        setEnderecoAluno(null);
-        System.out.printf("%nAluno deletado com sucesso!%n");
-        return this;
+    public List<Double> getNotas(String nomeTurma) {
+        return notasPorTurma.getOrDefault(nomeTurma, new ArrayList<>());
     }
 
-    public Aluno criarAluno() {
-        Scanner sc = new Scanner(System.in);
-        System.out.printf("%nCriando o cadastro do aluno!%n");
-        System.out.println("Digite o nome do aluno: ");
-        setNome(sc.nextLine());
-        System.out.println("Digite as informações do endereco do aluno: ");
-        Endereco endereco = new Endereco();
-        endereco.criarEndereco();
-        setEnderecoAluno(endereco);
+    public void adicionarFrequencia(String nomeTurma, int presencas) {
+        int total = frequenciaPorTurma.getOrDefault(nomeTurma, 0);
+        frequenciaPorTurma.put(nomeTurma, total + presencas);
+    }
 
-        return this;
+    public int getFrequencia(String nomeTurma) {
+        return frequenciaPorTurma.getOrDefault(nomeTurma, 0);
     }
 
 }

@@ -30,27 +30,8 @@ public class Disciplina {
         this.codigo = String.valueOf(idDisciplina);
     }
 
-    public Disciplina criarDisciplina() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Digite o nome do Disciplina: ");
-        String nome = sc.nextLine();
-        System.out.println("Disciplina criada com sucesso!");
-        return new Disciplina(nome);
-    }
-
     public void exibirDisciplina() {
         System.out.println("Nome: " + getNome());
         System.out.println("Codigo: " + getCodigo());
-    }
-
-    public static void buscarDisciplina(String nome) {
-        System.out.println("Nome da Disciplina: " + nome);
-    }
-
-    public Disciplina delDisciplina() {
-        setNome(null);
-        this.codigo = null;
-        System.out.printf("%nDisciplina deletada com sucesso!%n");
-        return this;
     }
 }

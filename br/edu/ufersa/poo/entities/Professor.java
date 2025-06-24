@@ -1,42 +1,25 @@
-public class Professor {
-    private static int matriculaProfessor = 0000;
-    private String matricula;
-    private String nome;
-    private String cpf;
-    private Endereco endereco;
+public class Professor extends Usuario{
+    private int matricula;
     private int qntTurmas;
-
-    public void setMatricula(){
-        ++matriculaProfessor;
-        this.matricula = String.valueOf(matriculaProfessor);
+    private List<String> turmas;
+    
+    public Professor() {
+    	super();
     }
-
+    
+    public Professor(String login, String senha, String nome, String endereco, String cpf, String email) {
+    	super(login, senha, nome, endereco, cpf, email);
+    	this.matricula = matricula;
+    	this.qntTurmas = qntTurmas;
+    	this.turmas = new ArrayList<>();
+    }
+    
     public String getMatricula(){
         return matricula;
     }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    
+    public void setMatricula(int matricula){
+        this.matricula = matricula;
     }
 
     public int getQntTurmas() {
@@ -46,11 +29,17 @@ public class Professor {
     public void setQntTurmas(int qntTurmas) {
         this.qntTurmas = qntTurmas;
     }
+    
+    public List<String> getTurmas() {
+        return turmas;
+    }
 
-    public Professor(String nome, String cpf, Endereco endereco) {
-        setMatricula();
-        setNome(nome);
-        setCpf(cpf);
-        setEndereco(endereco);
+    public void setTurmas(List<String> turmas) {
+        this.turmas = turmas;
+    }
+    
+    // metodo para que o professor veja suas turmas
+    public verTurmas() {
+    	// inserir implementação
     }
 }

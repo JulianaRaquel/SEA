@@ -73,7 +73,7 @@ class Usuario {
         System.out.println("Nome: " + nome);
         System.out.println("Login: " + login);
         System.out.println("Endereço: " + endereco);
+        System.out.println("CPF: " + cpf);
         System.out.println("E-mail: " + email);
-        System.out.println("Casa: " + email);
   }
 }
